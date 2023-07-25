@@ -92,7 +92,7 @@ const UnStakeHandler = async(e)=>{
       <div className="inner" >
               <div className="Productitem">
               <div className="productbody">
-                <p>MINT TOKENS</p>
+                <p>BUY TOKENS</p>
                 <form class="form-group"  onSubmit={MintHandler}>
                   <input type="text" class="form-control" placeholder='Enter amount of Tokens' id="tokens1" required/><br/>
                   <input type="submit" value={"SUBMIT"} class="btn btn-secondary"/><br/>
