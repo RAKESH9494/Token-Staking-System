@@ -4,7 +4,7 @@ const Home = (props) => {
   const [AvailableTokens,setAvailableTokens] = useState(0);
   const [StakedTokens,setStakedTokens] = useState(0);
   const [StakedAt,SetStakedAt] = useState();
-  const [TranStatusMINT,SetTranStatusMINT]=useState();
+  const [TranStatusPurachse,SetTranStatusPurachse]=useState();
   const [TranStatusSTAKE,SetTranStatusSTAKE]=useState();
   const [TranStatusUNSTAKE,SetTranStatusUNSTAKE]=useState();
   useEffect(()=>{
@@ -20,19 +20,19 @@ const Home = (props) => {
     }
     props.contract && getData()
   },[props.contract,AvailableTokens,StakedTokens,StakedAt])
-const MintHandler = async(e)=>{
+const BuyHandler = async(e)=>{
   e.preventDefault();
   const tokens = document.querySelector("#tokens1").value;
   try{
-    const transaction = await props.contract.MintTokens(tokens);
-    SetTranStatusMINT("Please wait ...")
+    const transaction = await props.contract.BuyTokens(tokens);
+    SetTranStatusPurachse("Please wait ...")
     await transaction.wait();
     document.querySelector("#tokens1").value="";
-    SetTranStatusMINT("");
-    alert("Tokens Minted Successfull");
+    SetTranStatusPurachse("");
+    alert("Tokens Purchase Successfull");
     window.location.reload();
   }catch(e){
-    SetTranStatusMINT("");
+    SetTranStatusPurachse("");
     alert(e.reason);
     console.log(e);
   }
@@ -82,7 +82,7 @@ const UnStakeHandler = async(e)=>{
       <div className="outer">
       <div class="results">
         <div class="results_in">
-          <span>Minted Tokens : {AvailableTokens}</span>
+          <span>Token Balance : {AvailableTokens}</span>
         </div>
         <div class="results_in">
           <span>Staked Tokens : {StakedTokens}</span>{StakedTokens == 0 ?"" :<div><span>At {StakedAt}</span></div>}
@@ -93,11 +93,11 @@ const UnStakeHandler = async(e)=>{
               <div className="Productitem">
               <div className="productbody">
                 <p>BUY TOKENS</p>
-                <form class="form-group"  onSubmit={MintHandler}>
+                <form class="form-group"  onSubmit={BuyHandler}>
                   <input type="text" class="form-control" placeholder='Enter amount of Tokens' id="tokens1" required/><br/>
                   <input type="submit" value={"SUBMIT"} class="btn btn-secondary"/><br/>
                 </form>
-                <span>{TranStatusMINT}</span>
+                <span>{TranStatusPurachse}</span>
               </div>
             </div>
             <div className="Productitem">
